@@ -115,6 +115,27 @@ impl S3FileSystem {
             client: new_client(credentials_provider, region, endpoint, None, None, None).await,
         }
     }
+
+    /// Create S3 `ObjectStore` with prebuilt client
+    pub async fn with_client(
+        credentials_provider: Option<SharedCredentialsProvider>,
+        region: Option<Region>,
+        endpoint: Option<Endpoint>,
+        retry_config: Option<RetryConfig>,
+        sleep: Option<Arc<dyn AsyncSleep>>,
+        timeout_config: Option<Config>,
+        client: Client,
+    ) -> Self {
+        Self {
+            credentials_provider,
+            region,
+            endpoint,
+            retry_config,
+            sleep: sleep,
+            timeout_config,
+            client,
+        }
+    }
 }
 
 #[async_trait]
