@@ -117,7 +117,7 @@ impl S3FileSystem {
     }
 
     /// Create S3 `ObjectStore` with prebuilt client
-    pub async fn with_client(
+    pub fn with_client(
         credentials_provider: Option<SharedCredentialsProvider>,
         region: Option<Region>,
         endpoint: Option<Endpoint>,
